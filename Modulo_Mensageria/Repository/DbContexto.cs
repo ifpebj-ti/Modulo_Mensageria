@@ -16,7 +16,6 @@ namespace Modulo_Mensageria.Repository
             optionsBuilder.UseLazyLoadingProxies();
         }
 
-
         public DbSet<Campanha> Campanha { get; set; }
     }
 }

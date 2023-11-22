@@ -14,10 +14,10 @@ namespace Modulo_Mensageria.QuartzJobs
             _campanhaService = campanhaService;
         }
 
-        public Task Execute(IJobExecutionContext context)
+        public async Task Execute(IJobExecutionContext context)
         {
+            var teste = await _campanhaService.getCampanhasDoDia();
             _logger.LogWarning("Processo de envio de mensagens começou");
-            return Task.CompletedTask;
         }
     }
 }

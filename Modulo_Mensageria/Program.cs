@@ -24,13 +24,20 @@ builder.Services.AddDbContext<DbContexto>(options =>
     options.UseNpgsql(Environment.GetEnvironmentVariable("CONNECTION_STRING_MARKETING"))
 );
 
+builder.Services.AddDbContext<UnifiedContext>(options =>
+    options.UseNpgsql(Environment.GetEnvironmentVariable("CONNECTION_STRING_GERAL"))
+);
+
 builder.Services.AddControllers();
 
 // Add services to the container.
 builder.Services.AddScoped<ICampanhaService, CampanhaService>();
+builder.Services.AddScoped<IClienteService, ClienteService>();
+builder.Services.AddScoped<IMensageriaService, MensageriaService>();
 
 // Add repositorys to the container.
 builder.Services.AddScoped<ICampanhaRepository, CampanhaRepository>();
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

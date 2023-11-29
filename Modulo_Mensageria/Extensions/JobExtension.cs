@@ -23,7 +23,6 @@ namespace Modulo_Mensageria.Extensions
                 opts.ForJob(jobKey)
                 .WithIdentity(jobName + "-trigger")
                 .WithCronSchedule(cronSchedule));
-
         }
     }
 }

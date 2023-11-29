@@ -6,18 +6,25 @@ namespace Modulo_Mensageria.QuartzJobs
     public class QuartzMensageria : IJob
     {
         private readonly ILogger<QuartzMensageria> _logger;
-        private readonly ICampanhaService _campanhaService;
+        private readonly IMensageriaService _mensageriaService;
 
-        public QuartzMensageria(ILogger<QuartzMensageria> logger, ICampanhaService campanhaService)
+        public QuartzMensageria(ILogger<QuartzMensageria> logger, IMensageriaService mensageriaService)
         {
             _logger = logger;
-            _campanhaService = campanhaService;
+            _mensageriaService=mensageriaService;
         }
 
         public async Task Execute(IJobExecutionContext context)
         {
-            var teste = await _campanhaService.getCampanhasDoDia();
-            _logger.LogWarning("Processo de envio de mensagens começou");
+            try
+            {
+                _logger.LogWarning("Processo de envio de mensagens começou");
+                await _mensageriaService.DispararMensagensCampanhasDoDia();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }
